@@ -1,0 +1,25 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Order Details{% endblock %}
+
+{% block admin_content %}
+<div class="admin-header">
+    <h2>Order Details</h2>
+    <a href="{{ url_for('adminorders') }}" class="btn-light">← Back</a>
+</div>
+
+{% if order %}
+<div class="card">
+    <h3>Order ID: {{ order.order_id }}</h3>
+    <p><strong>Product:</strong> {{ order.product_name }}</p>
+    <p><strong>User ID:</strong> {{ order.USER_ID }}</p>
+    <p><strong>Quantity:</strong> {{ order.QUANTITY if order.QUANTITY is not none else 'N/A' }}</p>
+    <p><strong>Total:</strong> ₹ {{ order.TOTAL_PRICE }}</p>
+    <p><strong>Status:</strong> {{ order.ORDER_STATUS }}</p>
+    <p><strong>Order Date:</strong> {{ order.CREATED_AT.strftime('%Y-%m-%d %H:%M:%S') if order.CREATED_AT }}</p>
+</div>
+{% else %}
+<p>Order not found.</p>
+{% endif %}
+
+{% endblock %}

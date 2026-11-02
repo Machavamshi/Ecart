@@ -1,0 +1,438 @@
+/* ==================== ADMIN DASHBOARD STYLES ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+/* ==================== LAYOUT ==================== */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==================== SIDEBAR ==================== */
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+    color: #ffffff;
+    padding: 30px 20px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    pointer-events: none;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar a {
+    display: block;
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.sidebar a:hover {
+    background: rgba(102, 126, 234, 0.2);
+    color: #ffffff;
+    border-left-color: #667eea;
+    transform: translateX(5px);
+}
+
+/* ==================== MAIN CONTENT ==================== */
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background: white;
+}
+
+/* ==================== INFO CARDS ==================== */
+
+.info-center,
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 4px solid #667eea;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+    border-top-color: #764ba2;
+}
+
+.info-card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.info-card p {
+    font-size: 32px;
+    margin: 0;
+    color: #667eea;
+    font-weight: 700;
+}
+
+/* ==================== ADMIN HEADER ==================== */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    font-size: 28px;
+    color: #333;
+    font-weight: 700;
+}
+
+/* ==================== BUTTONS ==================== */
+
+.btn-primary,
+.btn-edit,
+.btn-delete,
+.btn-view,
+.btn-sm {
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 24px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    padding: 8px 16px;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.btn-edit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-delete,
+.btn-view {
+    padding: 8px 16px;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.btn-delete:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-view {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.btn-view:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* ==================== CARD GRID ==================== */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-top: 3px solid #667eea;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.card h3 {
+    margin: 0 0 12px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.card p {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.price {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 18px;
+    margin: 12px 0;
+}
+
+.stock {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.card-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+/* ==================== BADGES ==================== */
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.admin-badge {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.user-badge {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+/* ==================== PROFILE STYLES ==================== */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.profile-card {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.profile-card h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.profile-card input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.profile-card input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.profile-card.danger {
+    border-left: 4px solid #ef4444;
+}
+
+/* ==================== MISCELLANEOUS ==================== */
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.08);
+    border-color: #764ba2;
+}
+
+.no-img,
+.empty-msg {
+    font-size: 13px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .sidebar h2 {
+        display: none;
+    }
+
+    .sidebar a {
+        margin-right: 12px;
+        margin-bottom: 0;
+        white-space: nowrap;
+        padding: 10px 15px;
+    }
+
+    .main-content {
+        padding: 24px;
+    }
+
+    .info-center,
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        padding: 16px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .admin-header h1 {
+        font-size: 22px;
+    }
+
+    .info-center,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-actions {
+        flex-wrap: wrap;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}

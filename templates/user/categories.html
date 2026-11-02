@@ -1,0 +1,89 @@
+{% extends "user/user.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_categories.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1 class="page-title">Select Category</h1>
+
+    <!-- CATEGORY CARDS -->
+    <div class="category-section">
+        <a href="{{ url_for('user_categories', category='Electronics') }}" class="category-card">
+            <img src="{{ url_for('static', filename='uploads/image.png') }}">
+            <h3>Electronics</h3>
+        </a>
+
+        <a href="{{ url_for('user_categories', category='Accessories') }}" class="category-card">
+            <img src="{{ url_for('static', filename='uploads/accessories.png') }}">
+            <h3>Accessories</h3>
+        </a>
+
+        <a href="{{ url_for('user_categories', category='Audio') }}" class="category-card">
+            <img src="{{ url_for('static', filename='uploads/audio.png') }}">
+            <h3>Audio</h3>
+        </a>
+
+        <a href="{{ url_for('user_categories', category='Computers') }}" class="category-card">
+            <img src="{{ url_for('static', filename='uploads/computers.png') }}">
+            <h3>Computers</h3>
+        </a>
+
+        <a href="{{ url_for('user_categories', category='Gaming') }}" class="category-card">
+            <img src="{{ url_for('static', filename='uploads/gaming.png') }}">
+            <h3>Gaming</h3>
+        </a>
+    </div>
+
+    <!-- PRODUCTS -->
+    {% if selected_category %}
+    <div class="products-section">
+        <h2>{{ selected_category }} Products</h2>
+
+        {% if items %}
+        <div class="product-grid">
+            {% for item in items %}
+            <div class="product-card">
+
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}">
+
+                <h4>{{ item.name }}</h4>
+                <p class="price">₹{{ item.price }}</p>
+
+                {% if item.stock > 0 %}
+                    <p class="stock in">In Stock</p>
+                {% else %}
+                    <p class="stock out">Out of Stock</p>
+                {% endif %}
+
+                <div class="buttons">
+                    <form action="{{ url_for('user_cart') }}" method="POST">
+                        <input type="hidden" name="product_id" value="{{ item.productid }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="cart-btn">Cart</button>
+                    </form>
+
+                    <form action="/add_to_wishlist/{{ item.productid }}" method="POST">
+                        <button class="wish-btn">Wishlist</button>
+                    </form>
+
+                    <form action="{{ url_for('buy_now', product_id=item.productid) }}" method="POST">
+                        <button class="buy-btn">Buy</button>
+                    </form>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

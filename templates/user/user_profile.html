@@ -1,0 +1,64 @@
+{% extends "user/user.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h2>My Profile</h2>
+
+<div class="profile-grid">
+
+    <div class="profile-card">
+        <h3>Profile Information</h3>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <div style="margin-bottom:8px;">
+                {% if profile.profile_image %}
+                    <img src="/{{ profile.profile_image }}" alt="Profile" style="max-width:120px;">
+                {% else %}
+                    <img src="{{ url_for('static', filename='default_user.png') }}" alt="Profile" style="max-width:120px;">
+                {% endif %}
+            </div>
+
+            <label>Name</label>
+            <input type="text" name="name" value="{{ profile.name }}" required>
+
+            <label>Email</label>
+            <input type="email" value="{{ profile.email }}" disabled>
+
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{ profile.phone_number }}">
+
+            <label>Change Profile Image</label>
+            <input type="file" name="profile_image" accept="image/*">
+
+            <button class="btn btn-primary">Update Profile</button>
+        </form>
+    </div>
+
+    <div class="profile-card">
+        <h3>Change Password</h3>
+
+        <form method="POST" action="{{ url_for('user_change_password') }}">
+            <input type="password" name="current_password" placeholder="Current Password" required>
+            <input type="password" name="new_password" placeholder="New Password" required>
+
+            <button class="btn btn-warning">Change Password</button>
+        </form>
+    </div>
+
+    <div class="profile-card danger">
+        <h3>Logout</h3>
+        <p>End your current session</p>
+
+        <a href="{{ url_for('userlogout') }}" class="btn btn-danger">Logout</a>
+    </div>
+
+</div>
+
+{% endblock %}

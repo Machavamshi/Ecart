@@ -1,0 +1,350 @@
+/* ==================== ORDERS PAGE STYLES ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ==================== CONTAINER ==================== */
+
+.orders-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==================== PAGE TITLE ==================== */
+
+.page-title {
+    margin-bottom: 40px;
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== ORDER CARD ==================== */
+
+.order-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border-left: 5px solid #667eea;
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.order-card:hover {
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
+    transform: translateY(-4px);
+    border-left-color: #764ba2;
+}
+
+/* ==================== ORDER HEADER ==================== */
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-header > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.label {
+    color: #9ca3af;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.order-header strong {
+    color: #667eea;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* ==================== ORDER BODY ==================== */
+
+.order-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ==================== PRODUCT INFO ==================== */
+
+.product-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.product-info h3 {
+    margin: 0 0 12px 0;
+    color: #333;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.product-info p {
+    margin: 8px 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.product-info p strong {
+    color: #333;
+    font-weight: 700;
+}
+
+/* ==================== ORDER SUMMARY ==================== */
+
+.order-summary {
+    flex: 1;
+    min-width: 250px;
+    background: #f9fafb;
+    padding: 18px;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+}
+
+.order-summary p {
+    margin: 12px 0;
+    font-size: 15px;
+    color: #6b7280;
+}
+
+.order-summary p strong {
+    color: #333;
+    font-weight: 700;
+}
+
+.order-summary > p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================== STATUS BADGE ==================== */
+
+.status {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.PENDING {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 2px solid #fcd34d;
+}
+
+.status.DELIVERED {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 2px solid #6ee7b7;
+}
+
+.status.CANCELLED {
+    background-color: #fee2e2;
+    color: #7f1d1d;
+    border: 2px solid #fca5a5;
+}
+
+/* ==================== NO ORDERS ==================== */
+
+.no-orders {
+    background: white;
+    padding: 60px 40px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.4s ease-out;
+}
+
+.no-orders p {
+    font-size: 18px;
+    color: #6b7280;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+.no-orders a {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.no-orders a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 768px) {
+    .orders-container {
+        width: 95%;
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .order-card {
+        padding: 20px;
+        border-left-width: 3px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .order-header > div {
+        min-width: auto;
+        flex: 1 1 100%;
+    }
+
+    .order-body {
+        flex-direction: column;
+    }
+
+    .product-info,
+    .order-summary {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .no-orders {
+        padding: 40px 25px;
+    }
+
+    .no-orders p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .no-orders a {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .orders-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .page-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .order-card {
+        padding: 16px;
+        margin-bottom: 16px;
+        border-left-width: 4px;
+    }
+
+    .order-header {
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+    }
+
+    .label {
+        font-size: 11px;
+    }
+
+    .order-header strong {
+        font-size: 14px;
+    }
+
+    .product-info h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .product-info p {
+        font-size: 13px;
+        margin: 6px 0;
+    }
+
+    .order-summary {
+        padding: 14px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .order-summary p {
+        margin: 8px 0;
+        font-size: 13px;
+    }
+
+    .status {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .no-orders {
+        padding: 30px 20px;
+    }
+
+    .no-orders p {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .no-orders a {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}

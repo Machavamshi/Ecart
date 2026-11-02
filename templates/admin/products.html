@@ -1,0 +1,179 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Admin Products{% endblock %}
+
+{% block admin_content %}
+
+<style>
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+    }
+
+    /* Deactivated product */
+    .card.deactivated {
+        background: #e0e0e0;
+        filter: grayscale(100%);
+        opacity: 0.85;
+    }
+
+    .card-img {
+        width: 100%;
+        height: 180px;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .price {
+        color: #007bff;
+        font-weight: bold;
+        margin: 6px 0;
+    }
+
+    .stock {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .status {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .card-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-edit {
+        background: #3498db;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .btn-delete {
+        background: #e74c3c;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .btn-activate {
+        background: #2ecc71;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+        .card-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="admin-header">
+    <h2>Products</h2>
+    <a href="{{ url_for('adminaddproduct') }}" class="btn-primary">➕ Add Product</a>
+</div>
+
+{% if products %}
+<div class="card-grid">
+    {% for p in products %}
+    <div class="card {% if p.active == 0 %}deactivated{% endif %}">
+
+        <!-- IMAGE -->
+        <div class="card-img">
+            {% set img = (p.image_url.lstrip('/') if p.image_url else (('uploads/' + p.image) if p.image else None)) %}
+            {% if img %}
+                <img src="{{ url_for('static', filename=img) }}">
+            {% else %}
+                <span>No Image</span>
+            {% endif %}
+        </div>
+
+        <!-- INFO -->
+        <div class="card-body">
+            <h3>{{ p.name }}</h3>
+            <p class="price">₹ {{ p.price }}</p>
+            <p class="stock">Stock: {{ p.stock }}</p>
+
+            <p class="status">
+                Status:
+                {% if p.active == 1 %}
+                    <b style="color:green;">Active</b>
+                {% else %}
+                    <b style="color:red;">Deactivated</b>
+                {% endif %}
+            </p>
+
+            <div class="card-actions">
+                <a href="{{ url_for('editproduct', productid=p.productid) }}" class="btn-edit">Edit</a>
+
+                {% if p.active == 1 %}
+                    <form action="{{ url_for('deactivate_product', productid=p.productid) }}"
+                        method="POST"
+                        style="display:inline;">
+                        <button type="submit" class="btn-delete" onclick="return confirm('Deactivate this product?')">
+                            Deactivate
+                        </button>
+                    </form>
+                {% else %}
+                    <form action="{{ url_for('activate_product', productid=p.productid) }}"
+                        method="POST"
+                        style="display:inline;">
+                        <button type="submit" class="btn-activate">
+                            Activate
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="empty-msg">No products found.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "user/user.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_orders.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="orders-container">
+    <h2 class="page-title">My Orders</h2>
+
+    {% if orders %}
+
+        {% for order in orders %}
+        <div class="order-card">
+
+            <!-- Order Header -->
+            <div class="order-header">
+                <div>
+                    <span class="label">Order ID:</span>
+                    <strong>#{{ order.order_id }}</strong>
+                </div>
+                <div>
+                    <span class="label">Ordered On:</span>
+                    {{ order.created_at }}
+                </div>
+            </div>
+
+            <!-- Order Body -->
+            <div class="order-body">
+
+                <div class="product-info">
+                    <h3>{{ order.product_name }}</h3>
+                    <p>Price: ₹{{ order.product_price }}</p>
+                    <p>Quantity: {{ order.quantity }}</p>
+                </div>
+
+                <div class="order-summary">
+                    <p><strong>Total:</strong> ₹{{ order.total_price }}</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="status {{ order.order_status }}">
+                            {{ order.order_status }}
+                        </span>
+                    </p>
+                    <p>
+                        <strong>Payment:</strong>
+                        {{ order.payment_status }}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="no-orders">
+            <h3>No Orders Yet 😔</h3>
+            <p>Start shopping and your orders will appear here.</p>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

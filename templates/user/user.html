@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Ecommerce - User Dashboard{% endblock %}
+
+    <!-- DO NOT CHANGE PATH -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_users.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+    <div class="layout">
+
+        <!-- Top Navigation (mobile-first responsive) -->
+        <header class="topnav">
+            <nav class="nav-inner">
+                <div class="nav-left">
+                    <a class="nav-link {% if request.endpoint=='user_home' %}active{% endif %}" href="{{ url_for('user_home') }}">Home</a>
+                    <a class="nav-link {% if request.endpoint=='user_profile' %}active{% endif %}" href="{{ url_for('user_profile') }}">Profile</a>
+                    <a class="nav-link {% if request.endpoint=='user_categories' %}active{% endif %}" href="{{ url_for('user_categories') }}">Categories</a>
+                    <a class="nav-link {% if request.endpoint=='user_orders' %}active{% endif %}" href="{{ url_for('user_orders') }}">Orders</a>
+                    <a class="nav-link {% if request.endpoint=='user_cart' %}active{% endif %}" href="{{ url_for('user_cart') }}">Cart</a>
+                </div>
+
+                <div class="nav-center">
+                    <form action="{{ url_for('user_home') }}" method="get" class="nav-search">
+                        <input type="text" name="search_product" placeholder="Search products..." value="{{ search_query|default('') }}">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                <div class="nav-right">
+                    <a class="brand" href="{{ url_for('user_home') }}">Ecommerce</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content content-with-navbar">
+            {% block content %}
+            <h1>Welcome to User Dashboard</h1>
+            <p>Select an option from the sidebar to continue.</p>
+
+            {% if products is defined %}
+            <section class="products-list">
+                <h2 style="margin:12px 0;">Products</h2>
+                {% if products %}
+                <div class="products-grid">
+                    {% for p in products %}
+                    <div class="product-card">
+                        {% if p.image_url %}
+                        <img src="{{ url_for('static', filename=p.image_url) }}" alt="{{ p.name }}" class="product-image">
+                        {% endif %}
+                        <h3>{{ p.name }}</h3>
+                        <p class="price">₹ {{ p.price }}</p>
+                        <p class="stock">Stock: {{ p.stock }}</p>
+
+                        {% if p.stock > 0 %}
+                            <p class="stock in">In Stock</p>
+                        {% else %}
+                            <p class="stock out">Out of Stock</p>
+                        {% endif %}
+
+                        <div class="buttons">
+                            <form action="{{ url_for('user_cart') }}" method="POST">
+                                <input type="hidden" name="product_id" value="{{ p.productid }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="cart-btn">Cart</button>
+                            </form>
+
+                            <form action="/add_to_wishlist/{{ p.productid }}" method="POST">
+                                <button class="wish-btn">Wishlist</button>
+                            </form>
+
+                            <form action="{{ url_for('buy_now', product_id=p.productid) }}" method="POST">
+                                <button class="buy-btn">Buy</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p>No products found.</p>
+                {% endif %}
+            </section>
+            {% endif %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+</body>
+</html>

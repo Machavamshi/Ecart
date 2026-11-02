@@ -1,0 +1,290 @@
+/* ==================== PROFILE PAGE STYLES ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ==================== CONTAINER ==================== */
+
+.profile-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ==================== PROFILE CARD ==================== */
+
+.profile-card {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 16px;
+    padding: 40px 35px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ==================== PROFILE IMAGE ==================== */
+
+.profile-image {
+    margin-bottom: 30px;
+}
+
+.profile-image img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #667eea;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.profile-image img:hover {
+    transform: scale(1.08);
+    border-color: #764ba2;
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* ==================== PROFILE NAME ==================== */
+
+.profile-info h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* ==================== INFO ROWS ==================== */
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 18px 0;
+    padding: 16px 16px;
+    border-bottom: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    background: #f9fafb;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.info-row:hover {
+    background: #f0f5ff;
+    border-bottom-color: #667eea;
+    transform: translateX(5px);
+}
+
+.info-row span {
+    font-weight: 700;
+    color: #667eea;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    flex: 0 0 40%;
+    text-align: left;
+}
+
+.info-row p {
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+    font-size: 15px;
+    flex: 1;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 600px) {
+    .profile-container {
+        min-height: auto;
+        padding: 20px 10px;
+    }
+
+    .profile-card {
+        max-width: 100%;
+        padding: 30px 20px;
+    }
+
+    .profile-image img {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .profile-info h2 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .info-row {
+        flex-direction: column;
+        text-align: left;
+        margin: 14px 0;
+        padding: 14px 12px;
+        gap: 8px;
+    }
+
+    .info-row span {
+        flex: 1 1 100%;
+        text-align: left;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .info-row p {
+        flex: 1 1 100%;
+        text-align: left;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 380px) {
+    .profile-card {
+        padding: 25px 15px;
+    }
+
+    .profile-image img {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+
+    .profile-info h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .info-row {
+        padding: 12px 10px;
+    }
+
+    .info-row span {
+        font-size: 11px;
+    }
+
+    .info-row p {
+        font-size: 13px;
+    }
+}
+
+/* ==================== EDITABLE PROFILE LAYOUT ==================== */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 20px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 16px;
+}
+
+.profile-card {
+    text-align: left;
+}
+
+.profile-card h3 {
+    margin-bottom: 12px;
+    color: #222;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 6px;
+    font-weight: 700;
+    color: #444;
+    font-size: 13px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="file"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e3e6ee;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    color: #333;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 12px;
+}
+
+.btn-primary { background: linear-gradient(90deg,#667eea,#764ba2); }
+.btn-warning { background: #f59e0b; }
+.btn-danger { background: #ef4444; }
+
+.profile-card.danger {
+    background: #fff6f6;
+    border: 1px solid #ffe5e5;
+}
+
+.profile-card .search-box { display: none; }
+
+@media (max-width: 900px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* small tweaks to reuse existing info-row style for form rows */
+.form-row { margin-bottom: 12px; }
+

@@ -1,0 +1,94 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_forms.css') }}">
+{% endblock %}
+
+{% block admin_content %}
+
+<div class="card">
+    <h2>Add New Product</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data"
+          action="{{ url_for('adminaddproduct') }}">
+
+        <div class="form-grid">
+
+            <div class="full">
+                <label>Product Name</label>
+                <input type="text" name="name"
+                       placeholder="Enter product name" required>
+            </div>
+
+            <div class="full">
+                <label>Description</label>
+                <textarea name="description" rows="4"
+                          placeholder="Product description..."></textarea>
+            </div>
+
+            <div>
+                <label>Category</label>
+                <select name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Audio">Audio</option>
+                    <option value="Computers">Computers</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Status</label>
+                <select name="active">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Price (₹)</label>
+                <input type="number" name="price" step="0.01" min="0" required>
+            </div>
+
+            <div>
+                <label>Stock</label>
+                <input type="number" name="stock" min="0" required>
+            </div>
+
+            <div class="full">
+                <label>Product Image</label>
+                <div class="image-box">
+                    Choose an image (JPG / PNG)
+                </div>
+                <input type="file" name="image" accept="image/*">
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn btn-save">
+                💾 Save Product
+            </button>
+
+            <a href="{{ url_for('adminproducts') }}"
+               class="btn btn-cancel">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

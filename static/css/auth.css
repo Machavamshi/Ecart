@@ -1,0 +1,216 @@
+/* ==================== AUTH PAGE STYLES ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ==================== CARD STYLES ==================== */
+
+.register-card,
+.auth-card {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 35px;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.register-card h2,
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* ==================== FORM ELEMENTS ==================== */
+
+label {
+    font-weight: 700;
+    font-size: 14px;
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 0;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+input[type="file"] {
+    border: none;
+    padding: 8px 0;
+    background: none;
+}
+
+input[type="file"]::file-selector-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* ==================== BUTTONS ==================== */
+
+button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ==================== ALERTS ==================== */
+
+.alert {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    border: 2px solid #fecaca;
+    font-weight: 600;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #fecaca;
+    font-weight: 600;
+}
+
+/* ==================== LINKS ==================== */
+
+.login-link,
+.auth-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.login-link a,
+.auth-footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.login-link a:hover,
+.auth-footer a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 480px) {
+    .register-card,
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    .register-card h2,
+    .auth-card h2 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-size: 13px;
+        margin-top: 14px;
+    }
+
+    input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 11px 16px;
+        font-size: 14px;
+    }
+}
+
